@@ -10,10 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Internship\Services\Config;
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/invoices', function () {
-    return Config::kidus();
-});
+Route::get('/invoices', "InvoicesController@authenticate");
