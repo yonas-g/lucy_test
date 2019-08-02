@@ -7,25 +7,32 @@ namespace App\Internship\Services;
 // $settings-> api.invoices
 // $settings-> api.transfers
 // $settings-> api.accounts
-//$baseURL = "https://api-et.hellocash.net";
-define("API_URL", "https://api-et.hellocash.net");
+define("API_URL",             env("HELLOCASH_API_URL"));
+
+define("KIDUS_PRINCIPAL",     env("KIDUS_PRINCIPAL"));
+define("KIDUS_CREDENTIALS",   env("KIDUS_CREDENTIALS"));
+define("KIDUS_SYSTEM",        env("KIDUS_SYSTEM"));
+
+define("YEMANE_PRINCIPAL",    env("YEMANE_PRINCIPAL"));
+define("YEMANE_CREDENTIALS",  env("YEMANE_CREDENTIALS"));
+define("YEMANE_SYSTEM",       env("YEMANE_SYSTEM"));
 class Config
 {
   private static $settings = array(
-    "kidus" => '{
-      "principal": "1416563",
-      "credentials":"lucy1234",
-      "system":"lucy"
-    }',
-    "yemane" => '{
-      "principal":"1569560",
-      "credentials":"lucy1234",
-      "system":"lucy"
-    }',
+    "kidus" => array(
+      "principal"     => KIDUS_PRINCIPAL,
+      "credentials"   => KIDUS_CREDENTIALS,
+      "system"        => KIDUS_SYSTEM
+    ),
+    "yemane" => array(
+      "principal"     => YEMANE_PRINCIPAL,
+      "credentials"   => YEMANE_CREDENTIALS,
+      "system"        => YEMANE_SYSTEM
+    ),
     "api" => array(
-      "authenticate" => API_URL . "/authenticate",
-      "invoices" => API_URL . "/invoices",
-      "accounts" => API_URL . "/accounts"
+      "authenticate"  => API_URL . "/authenticate",
+      "invoices"      => API_URL . "/invoices",
+      "accounts"      => API_URL . "/accounts"
     )
   );
 
@@ -47,7 +54,7 @@ class Config
           'Content-Type: application/json'
         )
       );
-      $payload = json_decode(Config::$settings[$who]);
+      $payload = Config::$settings[$who];
       return Request::post($options, $payload);
     } else {
       $message = array("message" => "Unknown Account " . $who, "status" => "ERROR");

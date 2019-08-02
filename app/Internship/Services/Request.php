@@ -12,9 +12,8 @@ class Request
     static function post($options, $payload)
     {
         $response = null;
-        //  $response = array("status"=> 200, "message"=> "Welcome", "body"=> array("options" => $options,"payload"=> $payload));
+        // $response = array("status" => 200, "message" => "Welcome", "body" => array("options" => $options, "payload" => $payload));
         $ch = curl_init($options['url']);
-        // curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -22,8 +21,9 @@ class Request
         if (!$response = curl_exec($ch)) {
             trigger_error(curl_error($ch));
         }
-        // dd($response);
         curl_close($ch);
+        // dd($response);
+
         return $response;
     }
 }
