@@ -11,7 +11,9 @@
 <body>
     <h1>Invoices</h1>
     <div>
-        {{ $data }}
+        {{ foreach( $data as $key=>$value) { }}
+            <p>{{ $key }}</p>
+        {{  } }}
     </div>
 </body>
 
