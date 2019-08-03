@@ -14,4 +14,4 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/invoices', "InvoicesController@authenticate");
+Route::get('/invoices', "InvoicesController@getInvoices");

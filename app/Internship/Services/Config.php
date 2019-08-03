@@ -61,4 +61,7 @@ class Config
       return json_encode($message);
     }
   }
+  static function api() {
+    return Config::$settings['api'];
+  }
 }
