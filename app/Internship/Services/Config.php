@@ -32,7 +32,9 @@ class Config
     "api" => array(
       "authenticate"  => API_URL . "/authenticate",
       "invoices"      => API_URL . "/invoices",
-      "accounts"      => API_URL . "/accounts"
+      "accounts"      => API_URL . "/accounts",
+      "transfers"      => API_URL . "/transfers"
+
     )
   );
 
@@ -61,7 +63,9 @@ class Config
       return json_encode($message);
     }
   }
-  static function api() {
+
+  static function api()
+  {
     return Config::$settings['api'];
   }
 }

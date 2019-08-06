@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,3 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/invoices', "InvoicesController@getInvoices");
+Route::get('/accounts', "AccountController@getAccounts");
+Route::get('/transfer', 'TransferController@getAllTransfer');
+Route::post('/transfer', 'TransferController@makeTransfer');

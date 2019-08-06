@@ -15,12 +15,13 @@ class Request
             trigger_error(curl_error($ch));
         }
         curl_close($ch);
-    
+
         return $response;
     }
     static function post($options, $payload)
     {
         $response = null;
+        // dd($payload);
         // $response = array("status" => 200, "message" => "Welcome", "body" => array("options" => $options, "payload" => $payload));
         $ch = curl_init($options['url']);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");

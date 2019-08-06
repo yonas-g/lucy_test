@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Internship\Services\Config;
 use App\Internship\Services\HelloCash\HelloCashApi;
 
-class InvoicesController extends Controller
+class AccountController extends Controller
 {
     public function authenticate(Request $req)
     {
@@ -14,20 +14,21 @@ class InvoicesController extends Controller
         return Config::login($req->query('who'));
     }
 
-    public function getInvoices(Request $req)
+    public function getAccounts(Request $req)
     {
         $response = json_decode($this->authenticate($req));
+        // return $req;
 
         if (!isset($response->token)) {
-            return view('invoices')->with([
+            return view('accounts')->with([
                 'error' => 'wrong credentials'
             ]);
         }
 
-        // dd(HelloCashApi::getAllInvoices($response->token));
+        //dd(HelloCashApi::getAllAccounts($response->token));
 
-        return view('invoices')->with([
-            'invoices' => HelloCashApi::getAllInvoices($response->token)
+        return view('accounts')->with([
+            'accounts' => HelloCashApi::getAllAccounts($response->token)
         ]);
     }
 }
