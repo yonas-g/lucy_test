@@ -21,3 +21,4 @@ Route::get('/transfer', 'TransferController@getAllTransfer');
 Route::post('/transfer', 'TransferController@makeTransfer');
 Route::get('/createMaterial', 'MaterialController@create');
 Route::post('/createMaterial', 'MaterialController@store');
+Route::post('/buy/{id}', 'MaterialController@buy');

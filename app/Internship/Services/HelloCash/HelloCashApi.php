@@ -56,6 +56,33 @@ class HelloCashApi
         // dd($response);
         return array_reverse($response);
     }
+    public static function makeInvoice($amount, $token)
+    {
+
+        $expires = date_format(date_create('9 August 2019'), 'c');
+        // dd(date_format(date_create('17 Oct 2008')->setTimezone(new DateTimeZone('America/New_York')), 'c'));
+        $data = array(
+            'amount' => (float) $amount,
+            'description' => 'this is description',
+            "from" => "+251944233162",
+            "currency" => "ETB",
+            "tracenumber" => "YEMANEBIZ_Invoice-1565178548067",
+            "notifyfrom" => true,
+            "notifyto" => true,
+            "expires" => $expires
+        );
+        $option = array(
+            'url' => Config::api()['invoices'],
+            'method' => 'POST',
+            'headers' => array(
+                "Content-Type: application/json",
+                "Authorization: Bearer ${token}"
+            )
+        );
+        $response = json_decode(Request::post($option, $data));
+        dd($response);
+    }
+
     public static function makeTransfer($token, $req)
     {
         $data = array(

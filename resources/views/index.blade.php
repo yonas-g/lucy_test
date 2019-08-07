@@ -28,9 +28,8 @@
                     <tr>
                         <td></td>
                             <td>
-                                    <form action="/buy" method="post">
-                                        
-                                        <input type="submit" value="BUY" class="btn btn-success">
+                                    <form action="/buy/{{$material->fee}}" method="POST">
+                                        {{ csrf_field() }}                                        <input type="submit" value="BUY" class="btn btn-success">
                                      </form>
                             </td>
 

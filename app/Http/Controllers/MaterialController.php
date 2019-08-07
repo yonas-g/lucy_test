@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Internship\Services\Config;
+use App\Internship\Services\HelloCash\HelloCashApi;
 
 use App\Material;
 
@@ -27,10 +29,18 @@ class MaterialController extends Controller
     {
         //show specified material
     }
-
-    public function buy()
+    public function authenticate($req)
     {
-        //Teansfer specified amount of money.
+        // return view('invoices', array("data" => Config::login($req->query('who'))));
+        return Config::login($req);
+    }
+
+    public function buy($amount)
+
+    {
+        $response = json_decode($this->authenticate('yemane'));
+
+        $invoices =  HelloCashApi::makeInvoice($amount, $response->token);
     }
 
     public function store(Request $request)
