@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MaterialController@view');
+
 Route::get('/invoices', "InvoicesController@getInvoices");
 Route::get('/accounts', "AccountController@getAccounts");
 Route::get('/transfer', 'TransferController@getAllTransfer');
 Route::post('/transfer', 'TransferController@makeTransfer');
+Route::get('/createMaterial', 'MaterialController@create');
+Route::post('/createMaterial', 'MaterialController@store');
